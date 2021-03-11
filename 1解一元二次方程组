@@ -1,0 +1,50 @@
+package test1;
+
+import java.util.Scanner;//sc相关
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// y=ax2+bx+c
+		Scanner sc = new Scanner(System.in);//定义之后可以输入值给变量了
+		
+		double a,b,c;
+		
+		a=sc.nextDouble();
+		b=sc.nextDouble();
+		c=sc.nextDouble();
+		
+		function question = new function();//定义一个对象question
+		question.sort(a, b, c);//调用对象内的函数sort
+	}
+}
+
+/*测试
+	y=5x2+2x+10		结果:no function
+	y=2x2+8x+5		结果:-3.10 -12.89
+	y=x2+5x+6		结果:	-2.0 -3.0
+	y=5x2+10x+5     结果:-1.0
+*/
+
+package test1;
+public class function {
+	//y=ax2+bx+c
+	public void sort(double a,double b,double c)
+	{
+		double delta,solution;
+		delta=b*b-4*a*c;
+		
+		if(delta<0)
+			System.out.println("no fouction");
+		else if(delta==0)
+		{
+			solution=-(2*a/b);
+			System.out.println("there is only one solution"+solution);	
+		}
+		else 
+		{
+			System.out.println("there has two solutions"+" "+(-b+Math.sqrt(delta))/2*a+" "+"and"+" "+(-b-Math.sqrt(delta))/2*a);
+		}
+	}
+}
