@@ -1,0 +1,103 @@
+package library;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		students xiaoming=new students();
+		library li = new library();
+		bag ba = new bag();
+		li.addbooks("高等数学",3);
+		li.addbooks("大学物理",4);
+		li.addbooks("线性代数",5);
+		li.looks();
+		xiaoming.sjieyue(sc.next(), sc.nextDouble(), sc.next(),sc.nextInt());
+		bag.zhanshi();
+		System.out.println("图书馆剩余书籍");
+		li.looks();
+	}
+}
+
+class students
+{
+	
+	public static void sjieyue(String strname,double time,String bname,int num)
+	{
+		library.jieyue(strname,time,bname,num);
+		bag.add(bname,num);
+	}
+}
+
+class bag
+{
+	static String b[] = new String[10];
+	static int i=0,k=0;
+	static int c[] = new int[10];
+	
+	public static void add(String name,int num)
+	{
+		b[i]=name;
+		c[i]=num;
+		i++;
+	}
+	
+	public static void zhanshi()
+	{
+		for(k=0;k<i;k++)
+		{
+			System.out.println("书包里面现有书籍和数量");
+			System.out.println(b[k]+" "+c[k]);
+		}
+	}
+}
+
+class library
+{
+	String strbooksname;
+	static String books[] = new String[10];
+	static int cunchu[] = new int[10];
+	static int i=0,k=0,j=0;
+	
+	public static void addbooks(String booksname,int z)
+	{
+		books[i]=booksname;
+		cunchu[i]=z;
+		i++;
+		z++;
+	}
+	
+	public  static double jieyue(String sname,double time,String bname,int num)
+	{
+		int z;
+		for(z=0;z<i;z++)
+			if(bname.equals(books[z]))
+				break;
+		
+		if(z==i)
+				System.out.println("没有这本书");
+		else 
+			if(cunchu[z]>=num)
+			{	
+				System.out.println("借阅人:"+sname);
+				System.out.println("借阅时间:"+time);
+				System.out.println("借阅书籍名称:"+bname);
+				System.out.println("借阅数量:"+num);
+				cunchu[z]-=num;
+			}
+			else
+				System.out.println("数量不够");
+	
+		return 0;
+	}
+	
+	public static void looks()
+	{
+		for(j=0;j<i;j++)
+		{
+			System.out.println(books[j]+" "+cunchu[j]);
+		}
+	}
+}
